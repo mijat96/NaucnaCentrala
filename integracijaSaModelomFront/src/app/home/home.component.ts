@@ -12,4 +12,22 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  daLiJeUrednik(){
+    if(localStorage.uloga == "urednik"){
+      return true;
+     }
+     else{
+       return false;
+     }
+  }
+
+  daLiJeAdmin(){
+    if(localStorage.uloga == "admin"){
+      return true;
+     }
+     else{
+       return false;
+     }
+  }
+
 }

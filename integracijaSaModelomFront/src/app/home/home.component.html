@@ -1,13 +1,18 @@
 <div id="login-box">
     <div class="left">
         <h1>Pocetna</h1>
-<nav>
-    <h1><a class="izgled" [routerLink]="['/registrate']" >Registracija</a></h1>
-    <h1><a class="izgled" [routerLink]="['/login']" >Login</a></h1>
-    <h1><a class="izgled" [routerLink]="['/confirmReviewer']" >Confirm Reviewer</a></h1>
-    <h1><a class="izgled" [routerLink]="['/newMagazine']" >New Magazine</a></h1>
-    <h1><a class="izgled" [routerLink]="['/addReviewersAndEditorsForMagazine']" >Add Editor and Reviewer</a></h1>
-    <h1><a class="izgled" [routerLink]="['/confirmMagazine']" >Confirm Magazine</a></h1>
-</nav>
+        <nav>
+    
+            <h1><a class="izgled" [routerLink]="['/registrate']" >Registracija</a></h1>
+            <h1><a class="izgled" [routerLink]="['/login']" >Login</a></h1>
+        
+        <div *ngIf="daLiJeAdmin();">
+            <h1><a class="izgled" [routerLink]="['/confirmReviewer']" >Confirm Reviewer</a></h1>
+            <h1><a class="izgled" [routerLink]="['/confirmMagazine']" >Confirm Magazine</a></h1>
+        </div>
+        <div *ngIf="daLiJeUrednik();">
+            <h1><a class="izgled" [routerLink]="['/newMagazine']" >New Magazine</a></h1>
+        </div>
+    </nav>
     </div>
 </div>
