@@ -22,17 +22,35 @@ public class SaveMagazine implements JavaDelegate{
 		// TODO Auto-generated method stub
 		List<FormSubmissionDto> registration = (List<FormSubmissionDto>)execution.getVariable("newMagazine");
 		String editor = (String)execution.getVariable("newMagazineChiefEditor");
-		
+		boolean isUpdated = false;
+		//treba samo proveriti da li casopis vec postoji i azurirati ga
 		String naziv = registration.get(0).getFieldValue();
 		Long issn = Long.parseLong(registration.get(1).getFieldValue());
 		String naucnaOblast = registration.get(2).getFieldValue();
 		String koPlaca = registration.get(3).getFieldValue();
 		
-		Magazine m = new Magazine(naziv, issn, naucnaOblast, koPlaca);
-		m.setAktivan("ne");
-		m.setGlavniUrednik(editor);
-
-		magRepository.save(m);
+		List<Magazine> allMagazine = magRepository.findAll();			
+		
+		if(!allMagazine.isEmpty()) {
+			for(Magazine curentMagazine: allMagazine) {
+				if(curentMagazine.getNaziv().equals(naziv)) {
+					curentMagazine.setIssn(issn);
+					curentMagazine.setNacinPlacanja(koPlaca);
+					curentMagazine.setNaucneOblasti(naucnaOblast);
+					magRepository.save(curentMagazine);
+					isUpdated = true;
+					break;
+				}
+			}
+		}
+		
+		if(!isUpdated) {
+			Magazine m = new Magazine(naziv, issn, naucnaOblast, koPlaca);
+			m.setAktivan("ne");
+			m.setGlavniUrednik(editor);
+			
+			magRepository.save(m);			
+		}
 	}
 
 }

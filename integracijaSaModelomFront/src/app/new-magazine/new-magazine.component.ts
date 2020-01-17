@@ -18,7 +18,8 @@ export class NewMagazineComponent implements OnInit {
   private enumValues = [];
 
   constructor(private magService: MagazineService, private router: Router) { 
-    let x = magService.getMagazineForm();
+    
+    let x = magService.getMagazineForm(localStorage.processInstance);
 
     x.subscribe(
       res => {
@@ -27,6 +28,7 @@ export class NewMagazineComponent implements OnInit {
         this.formFieldsDto = res;
         this.formFields = res.formFields;
         this.processInstance = res.processInstanceId;
+        localStorage.setItem("processInstance", this.processInstance);
         console.log(this.processInstance + ", procIns iz odgovora " + res.processInstanceId)
         this.formFields.forEach( (field) =>{
           
@@ -50,7 +52,11 @@ export class NewMagazineComponent implements OnInit {
     for (var property in value) {
       console.log(property);
       console.log(value[property]);
-      o.push({fieldId : property, fieldValue : value[property]});
+      if(property == "field.id"){
+        o.push({fieldId : "KoPlacaID", fieldValue : value[property]});
+      }else{
+        o.push({fieldId : property, fieldValue : value[property]});
+      }
     }
 
     //o.push();

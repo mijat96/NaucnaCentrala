@@ -48,8 +48,10 @@ export class ConfirmMagazineComponent implements OnInit {
       console.log(property);
       console.log(value[property]);
       if(property == "ProveraUspesnaID"){
-        value[property] = "false";
-        console.log("Nije potvrdjena registracija " + value[property])
+        if(value[property] != true){
+          value[property] = "false";
+          console.log("Nije potvrdjena registracija " + value[property])
+        }
       }
       o.push({fieldId : property, fieldValue : value[property]});
     }

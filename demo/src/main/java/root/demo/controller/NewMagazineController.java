@@ -50,18 +50,30 @@ public class NewMagazineController {
 	@Autowired
 	UserRepository userRepository;
 	
-	//Forma za novi magazin
-	@GetMapping(path = "/getFormNewMagazine", produces = "application/json")
-    public @ResponseBody FormFieldsDto get() {
+	//Pokretanje novog procesa i forma za novi magazin
+	@GetMapping(value = {"/getFormNewMagazine", "/getFormNewMagazine/{pInstance}"}, produces = "application/json")
+    public @ResponseBody FormFieldsDto get(@PathVariable(name = "pInstance", required = false) String pInstance) {
 		
-		ProcessInstance pi = runtimeService.startProcessInstanceByKey("novi_casopis");
-
-		Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).list().get(0);
-		
-		TaskFormData tfd = formService.getTaskFormData(task.getId());
-		List<FormField> properties = tfd.getFormFields();
-		
-        return new FormFieldsDto(task.getId(), pi.getId(), properties);
+		//runtimeService.getVariable(executionId, "newMagazine");
+		if(pInstance == null) {
+			ProcessInstance pi = runtimeService.startProcessInstanceByKey("novi_casopis");
+			
+			Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).list().get(0);
+			
+			TaskFormData tfd = formService.getTaskFormData(task.getId());
+			List<FormField> properties = tfd.getFormFields();
+			
+			return new FormFieldsDto(task.getId(), pi.getId(), properties);			
+		}
+		else {
+			List<FormSubmissionDto> registration = (List<FormSubmissionDto>)runtimeService.getVariable(pInstance, "newMagazine");
+			Task task = taskService.createTaskQuery().processInstanceId(pInstance).list().get(0);
+			
+			TaskFormData tfd = formService.getTaskFormData(task.getId());
+			List<FormField> properties = tfd.getFormFields();
+			
+			return new FormFieldsDto(task.getId(), pInstance, properties);
+		}
 	}
 	
 	//Cuvanje popunjene forme magazina
