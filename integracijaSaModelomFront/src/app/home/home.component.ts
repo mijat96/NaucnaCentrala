@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,4 +31,20 @@ export class HomeComponent implements OnInit {
      }
   }
 
+  daLiJeUlogovan(){
+    if(localStorage.uloga == undefined || localStorage.uloga == "undefined"){
+      console.log("Lose");
+      return true;
+     }
+     else{
+      console.log("Dobro");
+       return false;
+     }
+  }
+
+
+  logout(){
+    localStorage.uloga = undefined;
+    this.router.navigate(['home']);
+  }
 }

@@ -128,11 +128,12 @@ input[type="submit"]:active {
 
 button.social-signin {
   margin-bottom: 20px;
-  width: 220px;
+  width: 120px;
   height: 36px;
   border: none;
   border-radius: 2px;
-  color: #FFF;
+  color: white;
+  background: #16a085;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   transition: 0.2s ease;

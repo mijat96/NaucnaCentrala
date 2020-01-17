@@ -12,8 +12,13 @@ export class MagazineService {
 
   }
 
-  getMagazineForm(){
-    return this.httpClient.get('http://localhost:8082/newMagazine/getFormNewMagazine') as Observable<any>
+  getMagazineForm(pInstance){
+    if(pInstance != undefined){
+      return this.httpClient.get('http://localhost:8082/newMagazine/getFormNewMagazine/' + pInstance) as Observable<any>
+    }
+    else{
+      return this.httpClient.get('http://localhost:8082/newMagazine/getFormNewMagazine') as Observable<any>
+    }
   }
 
   newMagazine(taskId, magazine, username){
