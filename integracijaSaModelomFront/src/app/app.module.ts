@@ -18,6 +18,12 @@ import { Editor } from './guard/editor.guard';
 import { NewMagazineComponent } from './new-magazine/new-magazine.component';
 import { AddReviewersAndEditorsForMagazineComponent } from './add-reviewers-and-editors-for-magazine/add-reviewers-and-editors-for-magazine.component';
 import { ConfirmMagazineComponent } from './confirm-magazine/confirm-magazine.component';
+import { StartTextEditingComponent } from './start-text-editing/start-text-editing.component';
+import { TextInformationComponent } from './text-information/text-information.component';
+import { MasterEditorCheckComponent } from './master-editor-check/master-editor-check.component';
+import { PdfReviewComponent } from './pdf-review/pdf-review.component';
+import { ReviewCommentAndReturnPostTextComponent } from './review-comment-and-return-post-text/review-comment-and-return-post-text.component';
+import { ChoseReviewersComponent } from './chose-reviewers/chose-reviewers.component';
 
 const routes: Routes = [
   {
@@ -59,6 +65,36 @@ const routes: Routes = [
     path: "confirmMagazine",
     component: ConfirmMagazineComponent,
     canActivate: [Admin]
+  },
+  {
+    path: "textEditingStart",
+    component: StartTextEditingComponent,
+    canActivate: [Notauthorized]
+  },
+  {
+    path: "textInformation",
+    component: TextInformationComponent,
+    canActivate: [Notauthorized]
+  },
+  {
+    path: "masterEditorConfirm",
+    component: MasterEditorCheckComponent,
+    canActivate: [Notauthorized]
+  },
+  {
+    path:"pdfReview",
+    component: PdfReviewComponent,
+    canActivate: [Notauthorized]
+  },
+  {
+    path:"reviewCommentAndReturnPostText",
+    component: ReviewCommentAndReturnPostTextComponent,
+    canActivate: [Notauthorized]
+  },
+  {
+    path:"choseReviewers",
+    component: ChoseReviewersComponent,
+    canActivate: [Notauthorized]
   }
 ]
 
@@ -71,7 +107,13 @@ const routes: Routes = [
     ConfirmReviewerComponent,
     NewMagazineComponent,
     AddReviewersAndEditorsForMagazineComponent,
-    ConfirmMagazineComponent
+    ConfirmMagazineComponent,
+    StartTextEditingComponent,
+    TextInformationComponent,
+    MasterEditorCheckComponent,
+    PdfReviewComponent,
+    ReviewCommentAndReturnPostTextComponent,
+    ChoseReviewersComponent
   ],
   imports: [
     BrowserModule,

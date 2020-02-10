@@ -1,0 +1,22 @@
+<div id="login-box">
+    <div class="left">
+      <h1>Reviewers</h1>
+Chose first reviewer
+  <select class="form-control"  [(ngModel)]="selectedMagazin" (change)="onChangeEditors($event)"> 
+    <ng-template ngFor let-editor let-i="index" [ngForOf]="allMagaziens">
+      <option  [ngValue]="editor">
+        {{editor}}
+      </option>
+  </ng-template>
+</select>
+  <br>Chose second reviewer
+  <select class="form-control1"  [(ngModel)]="selectedMagazin1" (change)="onChangeEditorss($event)"> 
+    <ng-template ngFor let-editor let-i="index" [ngForOf]="allMagaziens">
+      <option  [ngValue]="editor">
+        {{editor}}
+      </option>
+  </ng-template>
+</select>
+<br><button  (click)="dodaj()" >Add reviewers! </button>
+  </div>
+  </div>

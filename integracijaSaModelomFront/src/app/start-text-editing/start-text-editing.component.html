@@ -1,0 +1,28 @@
+<div id="login-box">
+    <div class="left">
+      <h1>Registration</h1>
+  <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f.value, f)" ngNativeValidate>
+    Izaberite casopis
+    <div  class='form'>
+      <select>
+        <option *ngFor="let val of allMagaziens" value="val">
+          {{val}}
+        </option>
+      </select>
+    </div>
+      <br><input type="submit">
+    </form> -->
+    <!-- <ng-container *ngIf="exist()"><app-popunjavanje-oblasti [procesInstance]="processInstance"></app-popunjavanje-oblasti></ng-container> -->
+    <!-- <div *ngIf="exist()">
+      <app-popunjavanje-oblasti [processInstance]="processInstance"></app-popunjavanje-oblasti>
+  </div> -->
+  Izaberite casopis
+  <select class="form-control"  [(ngModel)]="selectedMagazin" (change)="onChangeEditors($event)"> 
+    <ng-template ngFor let-editor let-i="index" [ngForOf]="allMagaziens">
+      <option  [ngValue]="editor">
+        {{editor}}
+      </option>
+  </ng-template>
+</select>
+  </div>
+  </div>
